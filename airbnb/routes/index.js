@@ -48,6 +48,7 @@ router.post("/login", function (req, res, next) {
           res.cookie("EXPRESS_SESSION", newSessionId, { httpOnly: true });
         }
        // res.send(`로그인 성공 ` + id);
+        res.redirect('../')
         res.render("index", { title: `로그인ID : ${id} 테스트 페이지` });
       } else res.send(`아이디 또는 비밀번호가 틀림`);
     })
@@ -68,7 +69,8 @@ router.get("/logout", function (req, res, next) {
     res.clearCookie('EXPRESS_SESSION');
 
   }
-  res.render(  "index", { user:false,  test:'test',title: `테스트 페이지`});
+  res.redirect('../')
+  //res.render(  "index", { user:false,  test:'test',title: `테스트 페이지`});
  
 });
 

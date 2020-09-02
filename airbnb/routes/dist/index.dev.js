@@ -84,6 +84,7 @@ router.post("/login", function (req, res, next) {
       } // res.send(`로그인 성공 ` + id);
 
 
+      res.redirect('../');
       res.render("index", {
         title: "\uB85C\uADF8\uC778ID : ".concat(id, " \uD14C\uC2A4\uD2B8 \uD398\uC774\uC9C0")
       });
@@ -102,11 +103,7 @@ router.get("/logout", function (req, res, next) {
     res.clearCookie('EXPRESS_SESSION');
   }
 
-  res.render("index", {
-    user: false,
-    test: 'test',
-    title: "\uD14C\uC2A4\uD2B8 \uD398\uC774\uC9C0"
-  });
+  res.redirect('../'); //res.render(  "index", { user:false,  test:'test',title: `테스트 페이지`});
 }); //회원가입 페이지 요청 GET
 
 router.get("/signup", function (req, res, next) {
