@@ -1,9 +1,8 @@
 extends layout
 block content
-  h1= title
-  // 모달
-
-  form.modal-content.animate(action='/login' method='POST')
+  if user ===false
+    h1= title
+    form.modal-content.animate(action='/login' method='POST')
       .container
         label(for='id')
           b ID
@@ -16,19 +15,31 @@ block content
           input(type='checkbox' checked='checked' name='remember')
           |  로그인 유지
       .container(style='background-color:#f1f1f1')
+  else
+    button(type='button' onclick="location.href='logout'"  ) 로그아웃
 
 
 
 
   script.
-    // Get the modal
-    function modaloff(id){
-      let modal = document.getElementById(id);
-      // When the user clicks anywhere outside of the modal, close it
-      window.onclick = function(event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
+
+    var setCookie = function(name, value, day) {
+      var date = new Date();
+      date.setTime(date.getTime() + day * 60 * 60 * 24 * 1000);
+      document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
+    };
+
+    var getCookie = function(name) {
+    var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+    return value? value[2] : null;
+    };
+
+    var deleteCookie = function(name) {
+      console.log("del cookie");
+      setCookie(name, '',-1);
     }
-    }
-    modaloff('loginbtn');
+
+
+
+
+
