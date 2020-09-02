@@ -1,6 +1,7 @@
 extends layout
 block content
-  h1= title
+  if user ===false
+    h1= title
     form.modal-content.animate(action='/login' method='POST')
       .container
         label(for='id')
@@ -14,6 +15,8 @@ block content
           input(type='checkbox' checked='checked' name='remember')
           |  로그인 유지
       .container(style='background-color:#f1f1f1')
+  else
+    button(type='button' onclick="location.href='logout'"  ) 로그아웃
 
 
 
@@ -32,9 +35,10 @@ block content
     };
 
     var deleteCookie = function(name) {
-        var date = new Date();
-        document.cookie = name + "= " + "; expires=" + date.toUTCString() + "; path=/";
+      console.log("del cookie");
+      setCookie(name, '',-1);
     }
+
 
 
 

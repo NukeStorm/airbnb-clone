@@ -13,10 +13,15 @@ router.get("/", function (req, res, next) {
 
     if (req.cookies["EXPRESS_SESSION"]) {
       console.log("index page cookie :"+req.cookies["EXPRESS_SESSION"]);
+      try{
        userid = manager.getSessionInfo(req.cookies["EXPRESS_SESSION"])['id'] ;
+       }
+       catch{
+         ;
+       }
     }
 
-    userid?  res.render("index", { test:'test', title: `로그인ID : ${userid} 테스트 페이지` , user :userid }) :  res.render(  "index", {   test:'test',title: `테스트 페이지`});
+    userid?  res.render("index", { test:'test', title: `로그인ID : ${userid} 테스트 페이지` , user :true }) :  res.render(  "index", { user:false,  test:'test',title: `테스트 페이지`});
 });
 
 //로그인 요청 POST
@@ -50,6 +55,21 @@ router.post("/login", function (req, res, next) {
       res.send(`아이디 또는 비밀번호가 틀림`);
       console.log(err);
     });
+});
+
+//로그아웃 요청 GET
+
+router.get("/logout", function (req, res, next) {
+
+  let sessionId = req.cookies['EXPRESS_SESSION'];
+  if(sessionId){
+
+    manager.removeSession(sessionId);
+    res.clearCookie('EXPRESS_SESSION');
+
+  }
+  res.render(  "index", { user:false,  test:'test',title: `테스트 페이지`});
+ 
 });
 
 //회원가입 페이지 요청 GET
