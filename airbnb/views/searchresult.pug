@@ -1,0 +1,17 @@
+
+link(rel='stylesheet' href='/stylesheets/searchresult.css')
+
+div.row
+    each room in result
+        div.column
+            div.card
+                img.imgbox(src= ""+room.image)
+                div.contentbox
+                    p="위치 :" +room.pos 
+                    h3=room.title
+                    hr
+                    p=room.description
+                    p=room.pricelist[0]+'원'
+           
+
+
