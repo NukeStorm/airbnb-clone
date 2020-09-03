@@ -4,24 +4,33 @@ const LevelDB = require("../Util/levelDB");
 const SessionManager = require("../Util/SessionManager");
 const userDB = new LevelDB("user");
 const manager = new SessionManager();
+const RoomDAO = require("../model/RoomDao");
+const Room = require("../model/Room");
+const roomDao = new RoomDAO();
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
+  console.dir(manager, { depth: null });
+  let userid = null;
 
-  console.dir(manager, {depth:null});
-  let userid =null;
+  if (req.cookies["EXPRESS_SESSION"]) {
+    console.log("index page cookie :" + req.cookies["EXPRESS_SESSION"]);
+    try {
+      userid = manager.getSessionInfo(req.cookies["EXPRESS_SESSION"])["id"];
+    } catch {}
+  }
 
-    if (req.cookies["EXPRESS_SESSION"]) {
-      console.log("index page cookie :"+req.cookies["EXPRESS_SESSION"]);
-      try{
-       userid = manager.getSessionInfo(req.cookies["EXPRESS_SESSION"])['id'] ;
-       }
-       catch{
-         ;
-       }
-    }
-
-    userid?  res.render("index", { test:'test', title: `로그인ID : ${userid} 테스트 페이지` , user :true }) :  res.render(  "index", { user:false,  test:'test',title: `테스트 페이지`});
+  userid
+    ? res.render("index", {
+        test: "test",
+        title: `로그인ID : ${userid} 테스트 페이지`,
+        user: true,
+      })
+    : res.render("index", {
+        user: false,
+        test: "test",
+        title: `테스트 페이지`,
+      });
 });
 
 //로그인 요청 POST
@@ -47,8 +56,8 @@ router.post("/login", function (req, res, next) {
           manager.removeSession(req.cookies["EXPRESS_SESSION"]);
           res.cookie("EXPRESS_SESSION", newSessionId, { httpOnly: true });
         }
-       // res.send(`로그인 성공 ` + id);
-        res.redirect('../')
+        // res.send(`로그인 성공 ` + id);
+        res.redirect("../");
         res.render("index", { title: `로그인ID : ${id} 테스트 페이지` });
       } else res.send(`아이디 또는 비밀번호가 틀림`);
     })
@@ -61,17 +70,13 @@ router.post("/login", function (req, res, next) {
 //로그아웃 요청 GET
 
 router.get("/logout", function (req, res, next) {
-
-  let sessionId = req.cookies['EXPRESS_SESSION'];
-  if(sessionId){
-
+  let sessionId = req.cookies["EXPRESS_SESSION"];
+  if (sessionId) {
     manager.removeSession(sessionId);
-    res.clearCookie('EXPRESS_SESSION');
-
+    res.clearCookie("EXPRESS_SESSION");
   }
-  res.redirect('../')
+  res.redirect("../");
   //res.render(  "index", { user:false,  test:'test',title: `테스트 페이지`});
- 
 });
 
 //회원가입 페이지 요청 GET
@@ -99,13 +104,20 @@ router.post("/signup", function (req, res, next) {
   signupprocess();
 });
 
-//회원가입 요청 POST
+//숙소정보 검색 요청 POST
 router.post("/search", function (req, res, next) {
   console.log(req.body);
- 
-  
+
+  let target_pos = req.body['pos'];
+  let target_num = parseInt(req.body['personNum']);
+
+  console.log(target_pos,target_num);
+  let roomlist = roomDao.findRoomby(function (room) {
+    return room.pos.search(target_pos)>=0 && room.maxnum >=target_num;
+  });
+res.render('searchresult',{result:roomlist});
+ // res.send(roomlist);
 
 });
-
 
 module.exports = router;

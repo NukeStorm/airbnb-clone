@@ -7,7 +7,7 @@ const tablename = "room";
 class RoomDao {
   constructor() {
     this.adapter = new FileSync("db.json");
-    this.db = low(adapter);
+    this.db = low(this.adapter);
     this.db.defaults({ room: [] }).write();
   }
   //Create Room and insert to db
