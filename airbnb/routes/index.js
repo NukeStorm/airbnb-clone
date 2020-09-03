@@ -99,4 +99,13 @@ router.post("/signup", function (req, res, next) {
   signupprocess();
 });
 
+//회원가입 요청 POST
+router.post("/search", function (req, res, next) {
+  console.log(req.body);
+ 
+  
+
+});
+
+
 module.exports = router;
