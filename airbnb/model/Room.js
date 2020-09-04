@@ -32,7 +32,7 @@ for(i in json){
   let pos = obj['place'];
   let title = obj['title'];
   let desc1_arr= obj['description1'].split('·');
-  let desc2_arr= obj['description1'].split('·');
+  let desc2_arr= obj['description2'].split('·');
 
   let maxnum = desc1_arr[0].replace('최대 인원 ','').replace('명','').trim();
   let description_arr = []
