@@ -1,7 +1,7 @@
 extends layout
 block content
   include ./searchbar.pug
-  if user ===false
+  if session === null
     h1= title
     form.modal-content.animate(action='/login' method='POST')
       .container
