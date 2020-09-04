@@ -1,36 +1,22 @@
 var express = require("express");
 var router = express.Router();
 const LevelDB = require("../Util/levelDB");
-const SessionManager = require("../Util/SessionManager");
 const userDB = new LevelDB("user");
-const manager = new SessionManager();
 const RoomDAO = require("../model/RoomDao");
 const Room = require("../model/Room");
 const roomDao = new RoomDAO();
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
+  let manager = res.locals.manager;
   console.dir(manager, { depth: null });
-  let userid = null;
+  console.log(res.locals);
 
-  if (req.cookies["EXPRESS_SESSION"]) {
-    console.log("index page cookie :" + req.cookies["EXPRESS_SESSION"]);
-    try {
-      userid = manager.getSessionInfo(req.cookies["EXPRESS_SESSION"])["id"];
-    } catch {}
-  }
+  let userid = res.locals.session;
 
-  userid
-    ? res.render("index", {
-        test: "test",
-        title: `로그인ID : ${userid} 테스트 페이지`,
-        user: true,
-      })
-    : res.render("index", {
-        user: false,
-        test: "test",
-        title: `테스트 페이지`,
-      });
+  res.render("index", {
+    title: userid ? `로그인ID : ${userid} 테스트 페이지` : `테스트 페이지`,
+  });
 });
 
 //로그인 요청 POST
@@ -42,6 +28,8 @@ router.post("/login", function (req, res, next) {
     let user_pw = await userDB.get(id);
     return user_pw;
   };
+
+  let manager = res.locals.manager;
 
   loginprocess()
     .then((user_pw) => {
@@ -70,9 +58,11 @@ router.post("/login", function (req, res, next) {
 //로그아웃 요청 GET
 
 router.get("/logout", function (req, res, next) {
+  let manager = res.locals.manager;
   let sessionId = req.cookies["EXPRESS_SESSION"];
   if (sessionId) {
     manager.removeSession(sessionId);
+    res.locals.session = null;
     res.clearCookie("EXPRESS_SESSION");
   }
   res.redirect("../");
@@ -108,16 +98,21 @@ router.post("/signup", function (req, res, next) {
 router.post("/search", function (req, res, next) {
   console.log(req.body);
 
-  let target_pos = req.body['pos'];
-  let target_num = parseInt(req.body['personNum']);
+  let target_pos = req.body["pos"];
+  let target_num = parseInt(req.body["personNum"]);
+  
+  if(!target_pos)
+  target_pos="";
 
-  console.log(target_pos,target_num);
+  if(!target_num)
+  target_num=0;
+
+  console.log(target_pos, target_num);
   let roomlist = roomDao.findRoomby(function (room) {
-    return room.pos.search(target_pos)>=0 && room.maxnum >=target_num;
+    return room.pos.search(target_pos) >= 0 && room.maxnum >= target_num;
   });
-res.render('searchresult',{result:roomlist});
- // res.send(roomlist);
-
+  res.render("searchresult", { result: roomlist ,target_pos:target_pos, target_num:target_num  });
+  
 });
 
 module.exports = router;
