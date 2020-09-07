@@ -1,6 +1,7 @@
 extends layout
 block content
-  include ./searchbar.pug
+  //include ./searchbar.pug
+  include ./navbar.pug
   if session === null
     h1= title
     form.modal-content.animate(action='/login' method='POST')
@@ -18,8 +19,9 @@ block content
       .container(style='background-color:#f1f1f1')
   else
     button(type='button' onclick="location.href='logout'"  ) 로그아웃
-
-
+  section(style='background-color:white;height:1000px') 여기는 섹션1
+  section(style='background-color:black;height:1000px') 여기는 섹션2
+  footer(style='background-color:white;height:1000px') 여기는 푸터
 
 
   script.
