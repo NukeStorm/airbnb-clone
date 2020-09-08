@@ -1,13 +1,29 @@
 
 link(rel='stylesheet' href='/stylesheets/searchbar.css')
 #search_bar.search-bar
-    form(action='/search' method='POST')
-        input(type='text' placeholder='위치' name ='pos')
-        label(for='start') 시작날짜
-        input#start(type='date' name='trip-start' value='2018-07-22' min='2018-01-01')
-        label(for='end') 끝날짜
-        input#end(type='date' name='trip-end' value='2018-07-22' min='2018-01-01' )
-        input(type='number' placeholder='인원' name='personNum')
-        button(type='submit') 검색
+    form(action='/search' method='POST' style ="display:flex; justify-content:center")
+        label(for="pos")
+            .search-condition
+                h4 위치
+                input(type='text' placeholder='위치' name ='pos')
+        label(for="trip-start")
+            .search-condition
+                h4 시작날짜  
+                input#start(type='date' name='trip-start' value='2018-07-22' min='2018-01-01')
+        label(for="trip-end")
+            .search-condition
+                h4 끝날짜
+                input#end(type='date' name='trip-end' value='2018-07-22' min='2018-01-01' )
+        label(for="personNum")
+            .search-condition
+                h4 인원
+                input(type='number' placeholder='인원' name='personNum')
+        button(type='submit')
+            svg(viewbox='0 0 32 32' xmlns='http://www.w3.org/2000/svg' aria-hidden='true' role='presentation' focusable='false' style='display: block; fill: none; height: 12px; width: 12px; stroke: currentcolor; stroke-width: 5.33333; overflow: visible;')
+                path(d='m13 24c6.0751322 0 11-4.9248678 11-11 0-6.07513225-4.9248678-11-11-11-6.07513225 0-11 4.92486775-11 11 0 6.0751322 4.92486775 11 11 11zm8-3 9 9')
+                    g(fill='none')
+
+
+
 
 script(src='/scripts/searchbar.js')
