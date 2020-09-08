@@ -12,45 +12,6 @@ link(rel='stylesheet' href='/stylesheets/navbar.css')
         include ./dropdown.pug
 
 div(style='background-color:white;height:100px')
+script(src='/scripts/navbar.js')
 
 
-script.
-    function htmlToElement(html) {
-        var template = document.createElement('template');
-        html = html.trim(); // Never return a text node of whitespace as the result
-        template.innerHTML = html;
-        return template.content.firstChild;
-    }
-
-
-    //TODO : 코드 개선필요
-    
-    const elmnt = htmlToElement("<div>dom node 교체</div>");
-    const tmp =  document.getElementById("search_bar");
-    const backup = tmp.childNodes[0].cloneNode(true);
-
-
-    window.onscroll = function() {scrollFunction()};
-
-    function scrollFunction() {
-    if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-        document.getElementById("navbar").style.padding = "30px 10px";
-        document.getElementById("logo").style.fontSize = "25px";
-
-         if(tmp.childNodes[0] != elmnt){
-        tmp.replaceChild(elmnt, tmp.childNodes[0]);
-        elmnt.animate({opacity: ['0', '1']}, {easing: 'ease-out',duration: 250,delay: 0,fill: 'backwards'});
-         }
-    } else {
-        document.getElementById("navbar").style.padding = "60px 10px";
-        document.getElementById("logo").style.fontSize = "35px";
-
-       
-        tmp.replaceChild(backup, tmp.childNodes[0]);
-        backup.animate({opacity: ['0', '1']}, {easing: 'ease-out',duration: 250,delay: 0,fill: 'backwards'});
-        
-    }
-
-
-    }
-    

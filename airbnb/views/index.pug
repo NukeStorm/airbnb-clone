@@ -42,63 +42,6 @@ block content
   footer
     include ./footer.pug
 
-  script.
-
-    var setCookie = function(name, value, day) {
-      var date = new Date();
-      date.setTime(date.getTime() + day * 60 * 60 * 24 * 1000);
-      document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
-    };
-
-    var getCookie = function(name) {
-    var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
-    return value? value[2] : null;
-    };
-
-    var deleteCookie = function(name) {
-      console.log("del cookie");
-      setCookie(name, '',-1);
-    }
-
-
-    var modal = document.getElementById("login_modal");
-    var signupModal = document.getElementById("signup_modal");
-
-
-    console.log(modal);
-
-
-    var btn = document.getElementById("loginbtn");
-    var signupBtn = document.getElementById("signupbtn");
-
-    var loginCloseBtn = document.getElementsByClassName("close")[0];
-    var signupCloseBtn = document.getElementsByClassName("close")[1];
-
-    btn.onclick = function() {
-      modal.style.display = "block";
-
-    }
-
-
-    signupBtn.onclick = function() {
-      signupModal.style.display = "block";
-    }
-
-
-
-    loginCloseBtn.onclick = function() {
-      modal.style.display = "none";
-    }
-
-    signupCloseBtn.onclick = function() {
-      signupModal.style.display = "none";
-    }
-
-
-
-
-
-
-
+  script(src="/scripts/index.js")
 
 
