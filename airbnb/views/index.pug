@@ -4,22 +4,22 @@ block content
   link(rel='stylesheet' href='/stylesheets/grid.css')
   header
     include ./navbar.pug
-  
+
   section(style='background-color:white;height:auto;;margin-top:100px')
     section(style='display:flex; justify-content:center;')
-        .grid-container
-          div 
-            img(src='/images/topimage.jpg')
+      .grid-container
+        div 
+          img(src='/images/topimage.jpg')
 
   section(style='background-color:white;height:auto;')
     section(style='display:flex; justify-content:center;')
-        .grid-container
-          div 
-            img(src='/images/second1.jpg')
-          div 
-            img(src='/images/second2.jpg')
-          div
-            img(src='images/second3.jpg')
+      .grid-container
+        div 
+          img(src='/images/second1.jpg')
+        div 
+          img(src='/images/second2.jpg')
+        div
+          img(src='images/second3.jpg')
 
   section(style='background-color:black;height:auto; color:white;')
     section(style='display:flex; justify-content:center;')
@@ -38,7 +38,7 @@ block content
           img(src='/images/third3.jpg')
         .item4 
           img(src='/images/third4.jpg')
-      
+
   footer
     include ./footer.pug
 
@@ -62,15 +62,38 @@ block content
 
 
     var modal = document.getElementById("login_modal");
+    var signupModal = document.getElementById("signup_modal");
+
+
+    console.log(modal);
+
+
     var btn = document.getElementById("loginbtn");
-    var span = document.getElementsByClassName("close")[0];
+    var signupBtn = document.getElementById("signupbtn");
+
+    var loginCloseBtn = document.getElementsByClassName("close")[0];
+    var signupCloseBtn = document.getElementsByClassName("close")[1];
 
     btn.onclick = function() {
       modal.style.display = "block";
+
     }
-    span.onclick = function() {
+
+
+    signupBtn.onclick = function() {
+      signupModal.style.display = "block";
+    }
+
+
+
+    loginCloseBtn.onclick = function() {
       modal.style.display = "none";
     }
+
+    signupCloseBtn.onclick = function() {
+      signupModal.style.display = "none";
+    }
+
 
 
 
