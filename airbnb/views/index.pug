@@ -1,42 +1,44 @@
 extends layout
 block content
   //include ./searchbar.pug
+  link(rel='stylesheet' href='/stylesheets/grid.css')
   header
     include ./navbar.pug
-  //-
-    if session === null
-      h1= title
-      form.modal-content.animate(action='/login' method='POST')
-        .container
-          label(for='id')
-            b ID
-          input(type='text' placeholder='ID 입력' name='id' required='')
-          label(for='pw')
-            b Password
-          input(type='password' placeholder='비밀번호 입력' name='pw' required='')
-          button(type='submit') Login
-          label
-            input(type='checkbox' checked='checked' name='remember')
-            |  로그인 유지
-        .container(style='background-color:#f1f1f1')
-    else
-      button(type='button' onclick="location.href='logout'"  ) 로그아웃
-      
-  //
- 
-  section(style='background-color:white;height:1000px;margin-top:100px')
-    div(style='text-align:center')
-      img(src='/images/topimage.jpg')
-    div.secondview 
-      div(style='max-width:33.333%')
-        img(src='/images/second1.jpg')
-      div(style='max-width:33.333%')
-        img(src='/images/second2.jpg')
-      div(style='max-width:33.333%')
-        img(src='/images/second3.jpg')
+  
+  section(style='background-color:white;height:auto;;margin-top:100px')
+    section(style='display:flex; justify-content:center;')
+        .grid-container
+          div 
+            img(src='/images/topimage.jpg')
 
-  section(style='background-color:black;height:1000px')
-    h1 섹션2 공사중
+  section(style='background-color:white;height:auto;')
+    section(style='display:flex; justify-content:center;')
+        .grid-container
+          div 
+            img(src='/images/second1.jpg')
+          div 
+            img(src='/images/second2.jpg')
+          div
+            img(src='images/second3.jpg')
+
+  section(style='background-color:black;height:auto; color:white;')
+    section(style='display:flex; justify-content:center;')
+      div
+        h1 브로드웨이 온라인 체험
+        div(style ='width:70%')  
+          span(style ='word-break:break-all;') 슬기로운 집콕 생활을 위한 색다른 방법 - 실시간으로 진행되는 인터랙티브 브로드웨이 공연에 참여하고 출연진과 대화를 나눠보세요.
+      div
+        button 더 알아보기
+    section(style='display:flex; justify-content:center;')
+      .grid-container
+        .item1 
+          img(src='/images/third1.jpg')
+        .item2 
+          img(src='/images/third2.jpg')
+          img(src='/images/third3.jpg')
+        .item4 
+          img(src='/images/third4.jpg')
+      
   footer
     include ./footer.pug
 
@@ -57,6 +59,21 @@ block content
       console.log("del cookie");
       setCookie(name, '',-1);
     }
+
+
+    var modal = document.getElementById("login_modal");
+    var btn = document.getElementById("loginbtn");
+    var span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function() {
+      modal.style.display = "block";
+    }
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+
+
 
 
 
