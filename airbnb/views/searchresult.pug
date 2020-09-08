@@ -1,5 +1,6 @@
 
 link(rel='stylesheet' href='/stylesheets/searchresult.css')
+include ./navbar.pug
 h2=target_pos +"의 숙소" + ((target_num>0) ?", 숙박인원 "+ target_num+"명" : "") 
 h3= "검색결과 " + result.length + "건" 
 div.row

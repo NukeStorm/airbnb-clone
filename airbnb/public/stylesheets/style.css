@@ -1,9 +1,13 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  
 }
 
 a {
   color: #00B7FF;
 }
 
-section
+.secondview{
+  display: flex;
+  justify-content:  space-between ;
+}

@@ -1,0 +1,29 @@
+link(rel='stylesheet' href='/stylesheets/dropdown.css')
+.dropdown
+  button.dropbtn(onclick='showMenu()') 메뉴
+  #myDropdown.dropdown-content
+    a(href='#') 회원가입
+    a(href='#') 로그인
+    hr
+    a(href='#') 숙소 호스트 되기
+    a(href='#') 체험 호스트 되기
+    a(href='#') 도움말
+
+script.
+  function showMenu() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+
+  //메뉴 밖을 클릭하면 드롭다운 메뉴를 닫아버린다
+  window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
+      }
+    }
+  } 
