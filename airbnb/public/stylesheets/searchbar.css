@@ -5,11 +5,9 @@
     height: fit-content;
     border-radius: 2em;
     padding: 10px;
-
 }
 
 .search-bar label {
-    
     padding: 6px;
     border: none;
     margin-top: 3px;
@@ -19,7 +17,6 @@
 }
 
 .search-bar input[type=text] {
-    
     padding: 4px;
     border: none;
     margin-top: 5px;
@@ -29,7 +26,6 @@
 }
 
 .search-bar input[type=date] {
-   
     padding: 3px;
     border: none;
     margin-top: 4px;
@@ -39,7 +35,6 @@
 }
 
 .search-bar input[type=number] {
-   
     padding: 4px;
     border: none;
     margin-top: 5px;
@@ -49,12 +44,10 @@
 }
 
 .search-bar button {
- 
     padding: 4px;
     margin-top: 5px;
     border: none;
     background-color: cornflowerblue;
     font-size: 16px;
     width: fit-content;
-
 }
