@@ -1,0 +1,22 @@
+
+link(rel='stylesheet' href='/stylesheets/loginmodal.css')
+
+// login modal
+#login_modal.modal
+  .modal-content
+    .modal-header
+      span.close &times;
+      h2 로그인
+    .modal-body
+        form(action='/login' method='post')
+            .container
+                label(for='id')
+                b 이메일
+                input(type='text' placeholder='이메일 ID' name='id' required='')
+                label(for='pw')
+                b 비밀번호
+                input(type='password' placeholder='비밀번호' name='pw' required='')
+                button(type='submit') 로그인
+
+    .modal-footer
+      h2 회원가입
