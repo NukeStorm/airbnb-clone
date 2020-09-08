@@ -1,12 +1,11 @@
 extends layout
 block content
-    // link(rel='stylesheet' href='/stylesheets/loginmodal.css')
     // login modal
     #signup_modal.modal
         .modal-content
             .modal-header
-            span.close &times;
-            h2 회원가입
+                span.close &times;
+                h2 회원가입
             .modal-body
                 form(action='/signup' method='post')
                     .container
@@ -26,10 +25,4 @@ block content
                 | 
                 a#loginlink(href='#') 로그인
 
-    script.
-        // 로그인 버튼 클릭 트리거
-        let loginlink = document.getElementById("loginlink");
-        loginlink.onclick = function() {
-        document.getElementById("loginbtn").click();
-        document.getElementsByClassName("close")[1].click();
-        }
+

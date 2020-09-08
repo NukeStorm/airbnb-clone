@@ -10,17 +10,4 @@ link(rel='stylesheet' href='/stylesheets/searchbar.css')
         input(type='number' placeholder='인원' name='personNum')
         button(type='submit') 검색
 
-script.
-    function setCalanderSetting(){
-   
-        let todayStr =  new Date().toISOString().split('T')[0];
-        document.getElementsByName("trip-start")[0].setAttribute("value", todayStr);
-        document.getElementsByName("trip-start")[0].setAttribute("min", todayStr);
-        document.getElementsByName("trip-end")[0].setAttribute("value", todayStr);
-        document.getElementsByName("trip-end")[0].setAttribute("min", todayStr);
-
-    }
-    setCalanderSetting();
-
-
-
+script(src='/scripts/searchbar.js')
