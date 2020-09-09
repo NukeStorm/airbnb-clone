@@ -1,10 +1,16 @@
 const express = require("express");
 const LevelDB = require("../Util/levelDB");
 const RoomDAO = require("../model/RoomDao");
+const Room = require("../model/Room");
 
 const router = express.Router();
 const userDB = new LevelDB("user");
 const roomDao = new RoomDAO();
+
+// 날짜를 타임스탬프 값으로 변환
+function dateStrToTimeStamp(strDate) {
+  return Date.parse(strDate);
+}
 
 /* GET home page. */
 router.get("/", (req, res, next) => {
@@ -89,17 +95,26 @@ router.post("/signup", (req, res, next) => {
 
 // 숙소정보 검색 요청 POST
 router.post("/search", (req, res, next) => {
+  // 날짜 범위로 검색 가능하게 예약 시작 , 끝날짜를 타임스탬프로 변경
+  let startTime = dateStrToTimeStamp(req.body["trip-start"]);
+  let endTime = dateStrToTimeStamp(req.body["trip-end"]);
+
   let targetPos = req.body.pos;
   let targetNum = parseInt(req.body.personNum, 10);
 
   if (!targetPos) targetPos = "";
-
   if (!targetNum) targetNum = 0;
 
-  let roomlist = roomDao.findRoomby((room) => {
-    return room.pos.search(targetPos) >= 0 && room.maxnum >= targetNum;
+  let hasSchedule = false;
+  if (startTime && endTime) hasSchedule = true;
+
+  let roomlist = roomDao.findRoomby((obj) => {
+    let room = Object.assign(new Room(), obj);
+    let canReserve = true;
+    if (hasSchedule) canReserve = room.canReserveThisRoom(startTime, endTime);
+    return canReserve && room.pos.search(targetPos) >= 0 && room.maxnum >= targetNum;
   });
-  res.render("searchresult", { result: roomlist, target_pos: targetPos, target_num: targetNum });
+  res.render("searchresult", { result: roomlist, start_time: startTime, end_time: endTime, target_pos: targetPos, target_num: targetNum });
 });
 
 module.exports = router;
