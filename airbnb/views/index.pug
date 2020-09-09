@@ -5,6 +5,8 @@ block content
   header
     include ./navbar.pug
 
+ 
+
   section(style='background-color:white;height:auto;;margin-top:100px')
     section(style='display:flex; justify-content:center;')
       .grid-container
@@ -20,6 +22,12 @@ block content
   section(style='background-color:black;height:auto; color:white;')
     section(style='display:flex; justify-content:space-evenly; margin:5px')
       div
+        
+        if msg !=null
+          script.
+            let msg = "#{msg}";
+            alert(msg);
+          msg=null
         h1 브로드웨이 온라인 체험
         div(style ='width:50%')  
           span(style ='word-break:break-all;') 슬기로운 집콕 생활을 위한 색다른 방법 - 실시간으로 진행되는 인터랙티브 브로드웨이 공연에 참여하고 출연진과 대화를 나눠보세요.
