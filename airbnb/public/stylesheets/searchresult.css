@@ -6,50 +6,54 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Float four columns side by side */
-.column {
-    float: left;
-    width: 100%;
-    padding: 10px;
-}
-
-/* Remove extra left and right margins, due to padding */
 .row {
     margin: 5px 5px;
+    width: 1000px;
 }
 
-/* Clear floats after the columns */
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
+
 
 .imgbox {
-    float: left;
-    width: 25%;
-    height: 25%;
-    margin: 10px;
+
+    width: 250px;
+    height: 200px;
+    margin: 15px;
+    border-radius: 2em;
 }
 
 .contentbox {
-    float: left;
-    width: 25%;
+    width: 500px;
+    margin: 5px;
+
 }
 
-/* Responsive columns */
-@media screen and (max-width: 600px) {
-    .column {
-        width: 100%;
-        display: block;
-        margin-bottom: 20px;
-    }
+.buttonbox {
+    width: 150px;
+    padding: 10px;
 }
+
 
 /* Style the counter cards */
 .card {
-    overflow: auto;
+    width: 800px;
+    display: flex;
+    justify-content: space-between;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     padding: 16px;
     background-color: #f1f1f1;
+    margin-bottom: 10px;
+}
+
+.result_txt_container {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.result_container {
+
+    margin-left: 80px;
+    display: flex;
+    justify-content: center;
+
 }
