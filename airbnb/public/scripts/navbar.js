@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 /* eslint-disable no-shadow */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-undef */
@@ -6,6 +7,7 @@ const navbar = document.getElementById("navbar");
 const logo = document.getElementById("logo");
 // 페이지가 초기화될때 검색바를 감싸고 있는 부모 div element
 const searchbarPos = document.getElementById("search_bar");
+
 // html 문자열을 dom element로 변환
 function htmlStrToDomElement(html) {
   var template = document.createElement("template");
@@ -19,7 +21,7 @@ const smallerSearchBar = htmlStrToDomElement(
   '<div id="small_search_bar" style=" display:flex ;width:200px; justify-content:space-evenly;"  > <span style=" margin-top:25px; font-size:15px; "> 검색 시작하기 </span> <button type="submit"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style="display: block; fill: none; height: 12px; width: 12px; stroke: currentcolor; stroke-width: 5.33333; overflow: visible;"><path d="m13 24c6.0751322 0 11-4.9248678 11-11 0-6.07513225-4.9248678-11-11-11-6.07513225 0-11 4.92486775-11 11 0 6.0751322 4.92486775 11 11 11zm8-3 9 9"><g fill="none"></g></path></svg>  </div></button>'
 );
 
-const defaltSearchBar = document.getElementById("search_bar").childNodes[0].cloneNode(true);
+const defaltSearchBar = document.getElementById("search_bar").childNodes[0];
 
 function changeToDefaultNavBar(navbar, logo) {
   navbar.style.padding = "60px 10px";
