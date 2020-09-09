@@ -1,11 +1,17 @@
 
 link(rel='stylesheet' href='/stylesheets/searchresult.css')
 include ./navbar.pug
-h2=target_pos +"의 숙소" + ((target_num>0) ?", 숙박인원 "+ target_num+"명" : "") 
-h3= "검색결과 " + result.length + "건" 
-div.row
-    each room in result
-        div.column
+div(style='height:100px')
+
+div.result_txt_container
+    span
+        h2#result_txt 
+        h3#pos_txt
+
+
+div.result_container
+    div
+        each room in result
             div.card
                 img.imgbox(src= ""+room.image)
                 div.contentbox
@@ -14,3 +20,31 @@ div.row
                     hr
                     p=room.description
                     p=room.pricelist[0]+'원'
+                div.buttonbox
+                    button 예약하기
+                    button 예약목록
+
+
+script.
+    let result_cnt= #{result.length};
+    let start_time = #{start_time};
+    let end_time = #{end_time};
+    let target_num = #{target_num};
+    let target_pos = "#{target_pos}";
+
+    let resultarr= [];
+    resultarr.push(`${result_cnt}개의 숙소`);
+    if( !isNaN(start_time) && !isNaN(end_time)){
+    resultarr.push(`${new Date(start_time).toISOString().split('T')[0]}`);
+    resultarr.push(`${new Date(end_time).toISOString().split('T')[0]}`);
+    }
+
+    resultarr.push(`${target_num}명`);
+
+    target_pos = target_pos?`${target_pos}의 숙소`: `모든 장소의 숙소`;
+
+    let resultstr = resultarr.join(' · ');
+    document.querySelector('#result_txt').innerText =  resultstr;
+    document.querySelector('#pos_txt').innerText =  target_pos;
+
+    //console.log(resultstr);
