@@ -1,15 +1,20 @@
 
-link(rel='stylesheet' href='/stylesheets/searchresult.css')
-include ./navbar.pug
-div(style='height:100px')
+extends layout
+block content
+  //include ./searchbar.pug
+  link(rel='stylesheet' href='/stylesheets/grid.css')
+  link(rel='stylesheet' href='/stylesheets/searchresult.css')
+  header
+    include ./navbar.pug
+  section(style='background-color:white;height:auto;;margin-top:100px')
 
-div.result_txt_container
+
+  div.result_txt_container
     span
         h2#result_txt 
         h3#pos_txt
 
-
-div.result_container
+  div.result_container
     div
         each room in result
             div.card
@@ -24,8 +29,11 @@ div.result_container
                     button 예약하기
                     button 예약목록
 
+  footer
+    include ./footer.pug
 
-script.
+  script(src="/scripts/index.js")
+  script.
     let result_cnt= #{result.length};
     let start_time = #{start_time};
     let end_time = #{end_time};
@@ -47,4 +55,18 @@ script.
     document.querySelector('#result_txt').innerText =  resultstr;
     document.querySelector('#pos_txt').innerText =  target_pos;
 
-    //console.log(resultstr);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
