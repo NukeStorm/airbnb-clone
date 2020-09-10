@@ -57,3 +57,16 @@ body {
     justify-content: center;
 
 }
+
+#result_area{
+    overflow: auto;
+    height:500px;
+}
+.record-area{
+    text-align: center;
+}
+.record-row{
+    font-size: 16px;
+}
+
+
