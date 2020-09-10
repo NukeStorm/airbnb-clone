@@ -1,0 +1,22 @@
+.hero-image {
+    background-image: url("/images/topimage.jpg");
+    width: 1470px;
+    height: 374px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    border-radius: 2em;
+  }
+  
+  .hero-text {
+    text-align: left;
+    position: absolute;
+    width: 350px;
+    top: 5%;
+    left: 5%;
+    
+    color: black;
+  }
+  
+ 
