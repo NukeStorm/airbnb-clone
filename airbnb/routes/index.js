@@ -2,6 +2,7 @@ const express = require("express");
 const LevelDB = require("../Util/levelDB");
 const RoomDAO = require("../model/RoomDao");
 const Room = require("../model/Room");
+const RoomDao = require("../model/RoomDao");
 
 const router = express.Router();
 const userDB = new LevelDB("user");
@@ -114,7 +115,43 @@ router.post("/search", (req, res, next) => {
     if (hasSchedule) canReserve = room.canReserveThisRoom(startTime, endTime);
     return canReserve && room.pos.search(targetPos) >= 0 && room.maxnum >= targetNum;
   });
-  res.render("searchresult", { result: roomlist, start_time: startTime, end_time: endTime, target_pos: targetPos, target_num: targetNum });
+  res.render("searchresult", {
+    result: roomlist,
+    result_json: JSON.stringify(roomlist),
+    start_time: startTime,
+    end_time: endTime,
+    target_pos: targetPos,
+    target_num: targetNum,
+  });
+});
+router.post("/reservation", (req, res, next) => {
+  let { manager } = res.locals;
+  let sessionId = req.cookies.EXPRESS_SESSION;
+  let userid = manager.getSessionInfo(sessionId).id;
+  console.log(req.body);
+  // 날짜 범위로 검색 가능하게 예약 시작 , 끝날짜를 타임스탬프로 변경
+  let startTime = dateStrToTimeStamp(req.body["reservation-start"]);
+  let endTime = dateStrToTimeStamp(req.body["reservation-end"]);
+  let targetPos = req.body.pos;
+  let targetNum = parseInt(req.body["person-num"], 10);
+  let targetRid = parseInt(req.body.rid, 10);
+
+  let targetRoom = Object.assign(new Room(), roomDao.selectRoomByRid(targetRid));
+  console.log(targetRoom);
+  let canReserve = targetRoom.canReserveThisRoom(startTime, endTime);
+  if (canReserve) {
+    for (let timestamp = startTime; timestamp <= endTime; timestamp += 24 * 60 * 60 * 1000) {
+      targetRoom.addReservationRecord(timestamp, userid);
+    }
+    roomDao.modifyRoomInfo(targetRoom);
+    res.render("index", {
+      msg: "예약 성공",
+    });
+  } else {
+    res.render("index", {
+      msg: "해당 기간에 이미 예약이 있습니다",
+    });
+  }
 });
 
 module.exports = router;
