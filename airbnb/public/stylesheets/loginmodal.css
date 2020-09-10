@@ -4,7 +4,7 @@
     /* Hidden by default */
     position: fixed;
     /* Stay in place */
-    z-index: 1;
+    z-index: 100;
     /* Sit on top */
     padding-top: 100px;
     /* Location of the box */
@@ -100,6 +100,8 @@
 }
 
 .container input[type=text],
+.container input[type=number],
+.container input[type=date],
 .container input[type=password] {
     width: 100%;
     padding: 12px 20px;
