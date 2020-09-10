@@ -6,6 +6,8 @@ block content
   link(rel='stylesheet' href='/stylesheets/searchresult.css')
   header
     include ./navbar.pug
+    include ./reservationmodal.pug
+    include ./reservationrecord.pug
   section(style='background-color:white;height:auto;;margin-top:100px')
 
 
@@ -15,25 +17,39 @@ block content
         h3#pos_txt
 
   div.result_container
+    input#select(type='hidden')
     div
         each room in result
             div.card
                 img.imgbox(src= ""+room.image)
                 div.contentbox
-                    p="위치 :" +room.pos 
-                    h3=room.title
+                    h3="위치 :" +room.pos 
+                    h2=room.title
                     hr
                     p=room.description
-                    p=room.pricelist[0]+'원'
+                    h3=room.pricelist[0]+'원 / 박'
                 div.buttonbox
-                    button 예약하기
-                    button 예약목록
+                    //if session !=null
+                    button(value=room.rid).reserve_btn 예약하기
+                    button(value=room.rid).reserve_info_btn 예약현황
 
-  footer
-    include ./footer.pug
+  include ./footer.pug
 
   script(src="/scripts/index.js")
+  script(src="/scripts/reservation.js")
   script.
+    
+    let result  = !{result_json}  
+  
+    console.log(result);
+   
+    let map = {};
+    result.forEach(room=>{
+        map[room.rid] = room;
+    });
+
+    console.log(map);
+
     let result_cnt= #{result.length};
     let start_time = #{start_time};
     let end_time = #{end_time};
@@ -48,12 +64,21 @@ block content
     }
 
     resultarr.push(`${target_num}명`);
+    
 
     target_pos = target_pos?`${target_pos}의 숙소`: `모든 장소의 숙소`;
 
     let resultstr = resultarr.join(' · ');
     document.querySelector('#result_txt').innerText =  resultstr;
     document.querySelector('#pos_txt').innerText =  target_pos;
+    //let prictag = document.querySelector('#price');
+
+
+
+    
+   
+
+
 
 
 
