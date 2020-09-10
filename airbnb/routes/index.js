@@ -99,7 +99,7 @@ router.post("/search", (req, res, next) => {
   // 날짜 범위로 검색 가능하게 예약 시작 , 끝날짜를 타임스탬프로 변경
   let startTime = dateStrToTimeStamp(req.body["trip-start"]);
   let endTime = dateStrToTimeStamp(req.body["trip-end"]);
-
+  console.log(startTime, endTime);
   let targetPos = req.body.pos;
   let targetNum = parseInt(req.body.personNum, 10);
 
@@ -108,11 +108,19 @@ router.post("/search", (req, res, next) => {
 
   let hasSchedule = false;
   if (startTime && endTime) hasSchedule = true;
+  console.log(hasSchedule);
 
   let roomlist = roomDao.findRoomby((obj) => {
     let room = Object.assign(new Room(), obj);
-    let canReserve = true;
+
+    let canReserve = false;
     if (hasSchedule) canReserve = room.canReserveThisRoom(startTime, endTime);
+
+    if (room.rid == 0) {
+      console.log(room);
+      console.log(canReserve);
+    }
+
     return canReserve && room.pos.search(targetPos) >= 0 && room.maxnum >= targetNum;
   });
   res.render("searchresult", {
