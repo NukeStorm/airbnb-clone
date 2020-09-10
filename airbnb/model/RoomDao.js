@@ -22,6 +22,11 @@ class RoomDao {
     return this.db.get(tablename).value();
   }
 
+  // get one room info by roomid
+  selectRoomByRid(rid) {
+    return this.db.get(tablename).find({ rid }).value();
+  }
+
   // find rooms by query - lodash filter
   findRoomby(query) {
     let res = this.db.get(tablename).filter(query).value();
