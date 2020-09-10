@@ -27,7 +27,6 @@ class Room {
     // startpos  endpos 범위를 벗어난경우
     if (startpos < 0) startpos = this.reservelist.length;
     if (endpos < 0) endpos = this.reservelist.length;
-    console.log(startpos, endpos);
 
     let cnt = 0;
     // startpos endpos 범위의 예약시간들중 겹치는 시간대 있는지 확인
