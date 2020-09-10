@@ -29,8 +29,8 @@ block content
                     p=room.description
                     h3=room.pricelist[0]+'원 / 박'
                 div.buttonbox
-                    //if session !=null
-                    button(value=room.rid).reserve_btn 예약하기
+                    if session !=null
+                      button(value=room.rid).reserve_btn 예약하기
                     button(value=room.rid).reserve_info_btn 예약현황
 
   include ./footer.pug
