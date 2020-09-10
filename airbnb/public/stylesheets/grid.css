@@ -7,7 +7,7 @@
   padding: 3px;
   justify-content: center;
   align-items: center;
-  
+
 }
 
 .item1 {
@@ -16,21 +16,22 @@
   margin-right: 15px;
 }
 
-.item2{
+.item2 {
   margin-right: 5px;
 }
 
 .item2 img {
-  
+
   width: 350px;
   height: 300px;
 }
 
-.item3{
+.item3 {
   margin-left: 5px;
 }
+
 .item3 img {
-  
+
   width: 350px;
   height: 300px;
 }
@@ -47,13 +48,8 @@
   grid-column-end: 4;
 }
 
-.second {
-  
-}
 
 .second img {
   border-top-left-radius: 2em;
   border-top-right-radius: 2em;
-  
-
 }

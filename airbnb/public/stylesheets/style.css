@@ -1,12 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap');
+
 body {
   font: 14px 'Gothic A1', Helvetica, Arial, sans-serif;
-  
+
 }
-
-
-
-
 
 .secondview {
   display: flex;
@@ -18,7 +15,7 @@ body {
   transition: 0.3s;
   border-radius: 2em;
   background-color: white;
- 
+
 }
 
 .img-card img {
@@ -40,6 +37,6 @@ body {
 }
 
 
-.card-black{
+.card-black {
   background-color: rgb(34, 34, 34) !important;
 }
