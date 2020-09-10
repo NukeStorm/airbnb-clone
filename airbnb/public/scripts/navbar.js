@@ -24,11 +24,11 @@ const smallerSearchBar = htmlStrToDomElement(
 const defaltSearchBar = document.getElementById("search_bar").childNodes[0];
 
 function changeToDefaultNavBar(navbar, logo) {
-  navbar.style.padding = "60px 10px";
+  navbar.style.padding = "35px 10px";
   logo.style.fontSize = "35px";
 }
 function changeToSmallerNavBar(navbar, logo) {
-  navbar.style.padding = "30px 10px";
+  navbar.style.padding = "10px 10px";
   logo.style.fontSize = "25px";
 }
 
