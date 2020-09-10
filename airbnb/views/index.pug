@@ -1,28 +1,54 @@
 extends layout
+
 block content
   //include ./searchbar.pug
   link(rel='stylesheet' href='/stylesheets/grid.css')
+  link(rel='stylesheet' href='/stylesheets/heroimage.css')
   header
     include ./navbar.pug
-
- 
-
   section(style='background-color:white;height:auto;;margin-top:100px')
-    section(style='display:flex; justify-content:center;')
-      .grid-container
-        .second_top
-          img(src='/images/topimage.jpg')
-        .second 
+
+  section(style='display:flex; justify-content:center;')
+    .hero-image
+      .hero-text
+        span
+          h1(style='font-size:35px') 이제, 여행은 가까운 곳에서
+        span(style='font-size:17px')
+          p 가까운 곳의 숨겨진 아름다움을 발견하는 색다른 휴가를 즐겨보세요.
+        span
+          h3 가까운 여행지 둘러보기 >
+
+
+
+  section(style='display:flex; justify-content:center;')
+    .grid-container        
+      .second
+        .img-card
           img(src='/images/second1.jpg')
-        .second 
+          .img-card-container
+            span
+              h3 온라인 체험
+              p 세계 각지의 호스트가 진행하고 모두 함께 즐기는 독특한 액티비티
+      .second 
+        .img-card
           img(src='/images/second2.jpg')
-        .second 
+          .img-card-container
+            span
+              h3 독특한 공간
+              p 단순한 숙소 이상의 특별함이 담긴 공간
+      .second
+        .img-card
           img(src='images/second3.jpg')
+          .img-card-container
+            span
+              h3 집 전체
+              p 일행만을 위한 편안한 공간에서 친구 및 가족과 오붓한 시간을 보내세요
+
 
   section(style='background-color:black;height:auto; color:white;')
     section(style='display:flex; justify-content:space-evenly; margin:5px')
       div
-        
+
         if msg !=null
           script.
             let msg = "#{msg}";
@@ -35,16 +61,30 @@ block content
         button 더 알아보기
     section(style='display:flex; justify-content:center;')
       .grid-container
-        .item1 
-          img(src='/images/third1.jpg')
-        .item2 
-          img(src='/images/third2.jpg')
-          img(src='/images/third3.jpg')
-        .item4 
-          img(src='/images/third4.jpg')
+        .item1
+          .img-card.card-black
+            img(src='/images/third1.jpg')
+            .img-card-container
+              h3 온라인 체험
+        .item2
+          .img-card.card-black
+            img(src='/images/third2.jpg')
+            .img-card-container
+              h3 온라인 체험 
 
-  footer
-    include ./footer.pug
+        .item3  
+          .img-card.card-black
+            img(src='/images/third3.jpg')
+            .img-card-container
+              h3 온라인 체험 
+        .item4 
+          .img-card.card-black
+            img(src='/images/third4.jpg')
+            .img-card-container
+              h3 온라인 체험 
+
+
+  include ./footer.pug
 
   script(src="/scripts/index.js")
 
