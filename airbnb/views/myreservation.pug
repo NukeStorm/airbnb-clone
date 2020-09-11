@@ -1,0 +1,82 @@
+
+extends layout
+block content
+  //include ./searchbar.pug
+  link(rel='stylesheet' href='/stylesheets/grid.css')
+  link(rel='stylesheet' href='/stylesheets/searchresult.css')
+  header
+    include ./navbar.pug
+    include ./reservationmodal.pug
+    include ./reservationrecord.pug
+  section(style='background-color:white;height:auto;;margin-top:100px')
+
+
+  div.result_txt_container
+    span
+        h1 숙소 예약 기록
+        hr
+
+  div.result_container
+    input#select(type='hidden')
+    div
+        if result.length <1
+          section(style='width:500px ; margin-right:50px; background-color:white;height:800px;text-align:center')
+            h1 예약기록이 존재하지 않습니다.
+        else
+          each room in result
+              div.card
+                  img.imgbox(src= ""+room.image)
+                  div.contentbox
+                      h3="위치 :" +room.pos 
+                      h2=room.title
+                      hr
+                      p=room.description
+                      h3=room.pricelist[0]+'원 / 박'
+                  div.buttonbox
+                      button(value=room.rid).reserve_info_btn 예약현황
+
+  include ./footer.pug
+
+  script(src="/scripts/index.js")
+  script(src="/scripts/reservation.js")
+  script.
+    
+    let result  = !{result_json}  
+  
+    console.log(result);
+   
+    let map = {};
+    result.forEach(room=>{
+        map[room.rid] = room;
+    });
+
+    console.log(map);
+
+    let result_cnt= #{result.length};
+ 
+
+
+    //let prictag = document.querySelector('#price');
+
+
+
+    
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

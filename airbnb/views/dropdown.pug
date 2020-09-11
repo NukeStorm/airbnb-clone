@@ -8,10 +8,12 @@ include ./signupmodal.pug
     button.dropbtn(onclick='showMenu()')= '회원 :'+ session
   #myDropdown.dropdown-content
     if session ===null
-      a#signupbtn(href='#') 회원가입
       a#loginbtn(href='#') 로그인
+      a#signupbtn(href='#') 회원가입
     else
+      a#myreservationbtn(href='/myreservation') 여행
       a#logoutbtn(href='/logout') 로그아웃
+     
     hr
     a(href='#') 숙소 호스트 되기
     a(href='#') 체험 호스트 되기

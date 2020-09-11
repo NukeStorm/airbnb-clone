@@ -126,6 +126,44 @@ router.post("/search", (req, res, next) => {
     target_num: targetNum,
   });
 });
+
+// 나의 숙소 예약 기록 페이지
+router.get("/myreservation", (req, res, next) => {
+  let { manager } = res.locals;
+  let sessionId = req.cookies.EXPRESS_SESSION;
+
+  let userid = manager.getSessionInfo(sessionId);
+
+  if (!userid) {
+    res.render("myreservation", {
+      msg: "허용되지 않은 접근 방식입니다.",
+    });
+    return;
+  }
+  userid = userid.id;
+
+  const hasRecord = (record) => record.id === userid;
+  let roomlist = roomDao.findRoomby((obj) => {
+    let room = Object.assign(new Room(), obj);
+    if (room.reservelist.length <= 0) return false;
+    let hadReservationRecord = room.reservelist.some(hasRecord);
+    return hadReservationRecord;
+  });
+
+  roomlist = roomlist.map((room) => {
+    let myreservelist = room.reservelist.filter(hasRecord);
+
+    // eslint-disable-next-line no-param-reassign
+    room.reservelist = myreservelist;
+    return room;
+  });
+
+  res.render("myreservation", {
+    result: roomlist,
+    result_json: JSON.stringify(roomlist),
+  });
+});
+
 router.post("/reservation", (req, res, next) => {
   let { manager } = res.locals;
   let sessionId = req.cookies.EXPRESS_SESSION;
