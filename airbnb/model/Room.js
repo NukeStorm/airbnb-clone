@@ -17,7 +17,7 @@ class Room {
     };
 
     const isSmallerTimeval = (record) => {
-      return record.time > end;
+      return record.time >= end;
     };
     // 시작시간보다 최초로 크거나 같은 시간대의 예약정보 인덱스를 반환
     let startpos = this.reservelist.findIndex(isLagerTimeval);
