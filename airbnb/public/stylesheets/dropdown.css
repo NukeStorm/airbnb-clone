@@ -1,22 +1,24 @@
 /* Dropdown Button */
 .dropbtn {
-  background-color: #palevioletred;
+  background-color: #FF385C;
   color: white;
   padding: 16px;
   font-size: 16px;
   border: none;
+  width: 100px;
+  border-radius: 2em;
   cursor: pointer;
 }
 
 /* Dropdown button on hover & focus */
 .dropbtn:hover,
 .dropbtn:focus {
-  background-color: #palevioletred;
+  background-color: #FF385C;
 }
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
-  border-radius: 2em;
+
   position: relative;
   display: inline-block;
 }

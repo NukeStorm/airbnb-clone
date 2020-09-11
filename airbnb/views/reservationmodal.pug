@@ -1,0 +1,23 @@
+
+#reservation_modal.modal
+    .modal-content
+        .modal-header
+            span.close &times;
+            span(style='')#fee_per_day
+        .modal-body
+
+            form(action='/reservation' method='post')
+                .container
+                    h4 시작날짜
+                    input#rid(type='hidden' name='rid')  
+                    input#reservation_start(type='date' name='reservation-start' value='' min='2018-01-01')
+                    h4 끝날짜
+                    input#reservation_end(type='date' name='reservation-end' value='' min='2018-01-01' )
+                    h4 인원
+                    input(type='number' placeholder='인원' name='person-num')
+                    h4 합계
+                    .total-fee
+                    if session !=null
+                        button(type='submit') 예약하기
+        .modal-footer
+            h4 예약 확정 전에는 요금이 청구되지 않습니다

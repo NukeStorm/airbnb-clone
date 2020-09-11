@@ -7,9 +7,10 @@ function showMenu() {
 window.onclick = (event) => {
   let loginModal = document.getElementById("login_modal");
   let signupModal = document.getElementById("signup_modal");
-  let { target } = event;
+  let reservationModal = document.getElementById("reservation_modal");
 
-  if (target.matches("#login_modal") || target.matches("#signup_modal")) {
+  let { target } = event;
+  if (target.matches("#login_modal") || target.matches("#signup_modal") || target.matches("#reservation_modal")) {
     target.style.display = "none";
   }
 

@@ -1,24 +1,52 @@
 footer {
     background-color: white;
-
+    display: flex;
+    justify-content: center;
 }
 
 .column {
-    flex: 1;
-    margin-left: 5%;
-    margin-right: 5%;
-
+    width: 250px;
+    height: auto;
+    margin: 10px;
 }
 
 ul {
 
     list-style-type: none;
-    font-size: 18px;
+    font-size: 16px;
     padding-left: 0;
+
 }
 
-.container {
-    display: flex;
-    flex-wrap: wrap;
+footer li {
+    margin-bottom: 5px;
+}
 
+footer .container {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.footer-last {
+
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.site-info {
+
+    display: flex;
+    justify-content: space-around;
+
+}
+
+span a:after {
+    content: "·"
+}
+
+span a:last-child:after {
+    content: "";
 }
