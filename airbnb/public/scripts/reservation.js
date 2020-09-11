@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable no-undef */
@@ -54,6 +55,13 @@ function setReservationInfoEventHandlers() {
   };
 }
 
+function getTotalFee(feePerDay, personNum, startCal, endCal) {
+  let totalDay = (endCal.valueAsNumber - startCal.valueAsNumber) / 86400000;
+  console.log(totalDay);
+  totalFee = totalDay * personNum * feePerDay;
+  return isNaN(totalFee) ? 0 : totalFee;
+}
+
 function setResrvationEventHandlers() {
   let reservationModal = document.querySelector("#reservation_modal");
   let reservationBtnList = document.querySelectorAll(".reserve_btn");
@@ -61,6 +69,16 @@ function setResrvationEventHandlers() {
 
   let startCalnder = document.querySelector("#reservation_start");
   let endCalnder = document.querySelector("#reservation_end");
+
+  let personNumInput = document.querySelector("input[name=person-num]");
+  let totalFeeArea = document.querySelector(".total-fee");
+
+  personNumInput.addEventListener("input", (e) => {
+    let feePerDay = parseInt(document.querySelector("#fee_per_day h2").innerText.replace("₩", ""), 10);
+    let personNum = personNumInput.value;
+    let totalFee = getTotalFee(feePerDay, personNum, startCalnder, endCalnder);
+    totalFeeArea.innerText = totalFee;
+  });
 
   startCalnder.addEventListener("change", (e) => {
     let dateval = startCalnder.value;
@@ -70,11 +88,22 @@ function setResrvationEventHandlers() {
     date.setDate(date.getDate() + 1);
     let dayStr = date.toISOString().split("T")[0];
     endCalnder.setAttribute("min", dayStr);
+
+    let personNum = personNumInput.value;
+    let feePerDay = parseInt(document.querySelector("#fee_per_day h2").innerText.replace("₩", ""), 10);
+    console.log(feePerDay);
+    let totalFee = getTotalFee(feePerDay, personNum, startCalnder, endCalnder);
+    totalFeeArea.innerText = totalFee;
   });
 
   endCalnder.addEventListener("change", (e) => {
     let dateval = endCalnder.value;
     endCalnder.setAttribute("value", dateval);
+
+    let personNum = personNumInput.value;
+    let feePerDay = parseInt(document.querySelector("#fee_per_day h2").innerText.replace("₩", ""), 10);
+    let totalFee = getTotalFee(feePerDay, personNum, startCalnder, endCalnder);
+    totalFeeArea.innerText = totalFee;
   });
 
   reservationBtnList.forEach((element) => {

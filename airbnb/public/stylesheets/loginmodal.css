@@ -120,3 +120,16 @@ button {
     cursor: pointer;
     width: 100%;
 }
+
+.total-fee{
+    text-align: end;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    border: 1px solid grey;
+    width: inherit;
+    height: 40px;
+}
+.total-fee::after{
+    content: "원";
+}
