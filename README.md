@@ -79,4 +79,5 @@
 ## 실제 구현 화면 
 
 ### 메인페이지 
+![airbnb클론](https://user-images.githubusercontent.com/22471977/99906065-2baaa200-2d18-11eb-8c31-cf3c8b9b802c.gif)
 
