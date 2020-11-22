@@ -76,8 +76,14 @@
 - lucas의 요구사항 문서를 참고해서 구현한다.
 - 요구사항에 대한 구현을 완료한 후 자신의 github 아이디에 해당하는 브랜치에 Pull Request(이하 PR)를 통해 코드 리뷰 요청을 한다.
 
+## 배포 주소 
+
+https://j101airbnb.herokuapp.com/
+
 ## 실제 구현 화면 
 
 ### 메인페이지 
 ![airbnb클론](https://user-images.githubusercontent.com/22471977/99906065-2baaa200-2d18-11eb-8c31-cf3c8b9b802c.gif)
 
+## 검색결과 
+![airbnb검색](https://user-images.githubusercontent.com/22471977/99906204-23069b80-2d19-11eb-8ec0-753075002375.gif)
